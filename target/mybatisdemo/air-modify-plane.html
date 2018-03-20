@@ -19,39 +19,40 @@
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>新增客户</title>
+	<title>修改机型</title>
 	<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="page-container">
 	<form class="form form-horizontal" id="form-article-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> 姓&nbsp; &nbsp;名：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> &nbsp;&nbsp;机型：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="uname" name="uname">
+				<input type="text" class="input-text" value="" placeholder="" id="classifications" name="classifications">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机号：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>&nbsp;&nbsp;舱位：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+				<input type="text" class="input-text" value="" placeholder="" id="cabin" name="cabin">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>组装设备：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="idNumber" name="idNumber">
+				<input type="text" class="input-text" value="" placeholder="" id="assembly" name="assembly">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>余&nbsp; &nbsp;额：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>具体描述：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="assets" name="assets">
+				<input type="text" class="input-text" value="" placeholder="" id="description" name="description">
 			</div>
 		</div>
 
-		<div class="row cl">
+		<div class="row cl ">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<label class="modifyAirID" style="opacity: 0"></label>
 				<!--<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>-->
 				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -74,18 +75,22 @@
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
     function article_save(){
-        var uname=$("#uname").val();
-        var phone=$("#phone").val();
-        var idNumber=$("#idNumber").val();
-        var assets=$("#assets").val();
+        var classifications=$("#classifications").val();
+        var cabin=$("#cabin").val();
+        var assembly=$("#assembly").val();
+        var description=$("#description").val();
+        var id=$(".modifyAirID").text();
+        console.log("输入的id为: "+id);
 
+        console.log("输入的classifications为: "+classifications);
         $.ajax({
             type: "POST",   //提交的方法
-            url:"Client/insert", //提交的地址
-            data:{"uname":uname,"phone":phone,"idNumber":idNumber,"assets":assets},
+            url:"Air/updateById", //提交的地址
+            data:{"id":id,"classifications":classifications,"cabin":cabin,"assembly":assembly,"description":description},
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来
+//               window.location.href="javascript:location.replace(location.href);"
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
                 window.parent.location.reload();
@@ -93,7 +98,6 @@
             }
         });
         window.parent.location.reload();
-
     }
 
     $(function(){

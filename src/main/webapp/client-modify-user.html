@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>新增客户</title>
+	<title>修改客户</title>
 	<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -50,8 +50,9 @@
 			</div>
 		</div>
 
-		<div class="row cl">
+		<div class="row cl ">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<label class="modifyID" style="opacity: 0"></label>
 				<!--<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>-->
 				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -78,14 +79,18 @@
         var phone=$("#phone").val();
         var idNumber=$("#idNumber").val();
         var assets=$("#assets").val();
+        var id=$(".modifyID").text();
+        console.log("输入的id为: "+id);
 
+        console.log("输入的uname为: "+uname);
         $.ajax({
             type: "POST",   //提交的方法
-            url:"Client/insert", //提交的地址
-            data:{"uname":uname,"phone":phone,"idNumber":idNumber,"assets":assets},
+            url:"Client/updateById", //提交的地址
+            data:{"id":id,"uname":uname,"phone":phone,"idNumber":idNumber,"assets":assets},
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来
+//               window.location.href="javascript:location.replace(location.href);"
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
                 window.parent.location.reload();
@@ -93,7 +98,6 @@
             }
         });
         window.parent.location.reload();
-
     }
 
     $(function(){

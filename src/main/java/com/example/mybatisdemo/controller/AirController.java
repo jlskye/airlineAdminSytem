@@ -1,8 +1,8 @@
 package com.example.mybatisdemo.controller;
 
 
-import com.example.mybatisdemo.entity.Client;
-import com.example.mybatisdemo.service.ClientService;
+import com.example.mybatisdemo.entity.Air;
+import com.example.mybatisdemo.service.AirService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,30 +12,28 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("Client/")
-public class ClientController {
+@RequestMapping("Air/")
+public class AirController {
     @Autowired
-    private ClientService clientService;
-    @RequestMapping("/updateById")
-    public String updateById(Client client){
-        System.out.println(client.getId()+client.getUname()+client.getIdNumber());
-        clientService.updateById(client);
-        return "redirect:/clientList";
-    }
+    private AirService airService;
     @RequestMapping("/insert")
-    public String insert(Client client){
-        clientService.insert(client);
-        return "redirect:/clientList";
+    public String insert(Air air){
+        airService.insert(air);
+        return "redirect:/airList";
     }
-
-    @RequestMapping("/clientList")
+    @RequestMapping("/updateById")
+    public String updateById(Air air){
+        System.out.println(air.getId()+air.getCabin()+air.getDescription());
+        airService.updateById(air);
+        return "redirect:/airList";
+    }
+    @RequestMapping("/airList")
     public ModelAndView clientList(ModelAndView mv){
-        List<Client> clientList = clientService.findAll();
-        mv.addObject("clientList",clientList);
-        mv.setViewName("clientList");
+        List<Air> airList = airService.findAll();
+        mv.addObject("airList",airList);
+        mv.setViewName("airList");
         return mv;
     }
-
 
 
     @RequestMapping("/deleteById")
@@ -48,8 +46,8 @@ public class ClientController {
         int[] arr = new int[len];
         for(int i=0;i<len;i++){
             arr[i] = Integer.parseInt(idString2[i]);
-            clientService.deleteById(arr[i]);
+            airService.deleteById(arr[i]);
         }
-        return "redirect:/clientList";
+        return "redirect:/airList";
     }
 }

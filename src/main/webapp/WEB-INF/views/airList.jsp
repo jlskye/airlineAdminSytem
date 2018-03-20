@@ -12,7 +12,7 @@ String basePath = request.getScheme() + "://"
 <!DOCTYPE HTML>
 <html>
 <head>
-	<base href="/clientList.jsp" />
+	<base href="/airList.jsp" />
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -31,11 +31,11 @@ String basePath = request.getScheme() + "://"
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>客户列表</title>
+	<title>机型列表</title>
 </head>
 <body>
 <%@ page isELIgnored="false" %>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 客户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 机型清单 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<%--<div class="text-c"> 日期范围：--%>
 		<%--<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">--%>
@@ -47,7 +47,7 @@ String basePath = request.getScheme() + "://"
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="datadel($('.myCheck').children(':first-child').children(':first-child'))" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a class="btn btn-primary radius" onclick="picture_add('添加客户','client-add-user.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加客户</a>
+		<a class="btn btn-primary radius" onclick="picture_add('新增机型','air-add-plane.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 新增机型</a>
 		</span>
 		<span class="r"></span> </div>
 	<div class="mt-20">
@@ -56,25 +56,25 @@ String basePath = request.getScheme() + "://"
 			<tr class="text-c  ">
 				<th width="40"><input name="" type="checkbox" value=""></th>
 				<th width="80"> 编号</th>
-				<th width="100">姓 名</th>
-				<th >手机号</th>
-				<th >身份证号码</th>
-				<th width="100">余额</th>
+				<th width="100">机 型</th>
+				<th >舱 位</th>
+				<th >组装设备</th>
+				<th width="100">具体描述</th>
 				<th width="100">操作</th>
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${requestScope.clientList}" var="client">
+			<c:forEach items="${requestScope.airList}" var="air">
 			<tr class="text-c myCheck">
 				<td><input name="" type="checkbox" value=""></td>
-				<td>${client.id}</td>
-				<td>${client.uname}</td>
-				<td>${client.phone}</td>
-				<td> ${client.idNumber}</td>
-				<td>${client.assets} 元</td>
+				<td>${air.id}</td>
+				<td>${air.classifications}</td>
+				<td>${air.cabin}</td>
+				<td> ${air.assembly}</td>
+				<td>${air.description}</td>
 				<td class="td-manage">
-					<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改用户信息','client-modify-user.html',${client.id},'${client.uname}',${client.phone},${client.idNumber},${client.assets} )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-					<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,${client.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改飞机信息','air-modify-plane.html',${air.id},'${air.classifications}','${air.cabin}','${air.assembly}','${air.description}' )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,${air.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
 			</tr>
 			</c:forEach>
@@ -174,7 +174,7 @@ String basePath = request.getScheme() + "://"
     }
 
     /*图片-编辑*/
-    function picture_edit(title,url,id,uname,phone,idNumber,assets){
+    function picture_edit(title,url,id,classifications,cabin,assembly,description){
         var index = layer.open({
             type: 2,
             title: title,
@@ -183,16 +183,16 @@ String basePath = request.getScheme() + "://"
                 var body = layer.getChildFrame('body', index);//建立父子联系
                 var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
 
-                var id_label = body.find('.modifyID');
-                var unameObj = body.find("#uname");
-                var phoneObj = body.find("#phone");
-                var idNumberObj = body.find("#idNumber");
-                var assetsObj = body.find("#assets");
-                $(unameObj).val(uname);
-                $(phoneObj).val(phone);
-                $(idNumberObj).val(idNumber);
-                $(assetsObj).val(assets);
-                $(id_label).text(id);
+                var airid_label = body.find('.modifyAirID');
+                var classObj = body.find("#classifications");
+                var cabinObj = body.find("#cabin");
+                var assemblyObj = body.find("#assembly");
+                var despObj = body.find("#description");
+                $(classObj).val(classifications);
+                $(cabinObj).val(cabin);
+                $(assemblyObj).val(assembly);
+                $(despObj).val(description);
+                $(airid_label).text(id);
 
             }
         });
@@ -215,7 +215,7 @@ String basePath = request.getScheme() + "://"
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: "Client/deleteById",
+                url: "Air/deleteById",
                 data:{"id":idString},
                 success: function(data){
                     $(obj).parents("tr").remove();
@@ -250,7 +250,7 @@ String basePath = request.getScheme() + "://"
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: "Client/deleteById",
+                url: "Air/deleteById",
                 data:{"id":idString},
                 success: function(data){
                     $(obj).parents("tr").remove();

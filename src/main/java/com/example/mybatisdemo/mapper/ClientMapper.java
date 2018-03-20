@@ -4,6 +4,7 @@ import com.example.mybatisdemo.entity.Client;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface ClientMapper {
     void insert(Client client);
     @Delete("delete from user_info where id=#{id}")
     void deleteById(int id);
+    @Update("update user_info set uname=#{uname},phone=#{phone},idNumber=#{idNumber},assets=#{assets} where id=#{id}")
+    void updateById(Client client);
 }

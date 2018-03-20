@@ -12,6 +12,7 @@ String basePath = request.getScheme() + "://"
 <!DOCTYPE HTML>
 <html>
 <head>
+	<base href="/clientList.jsp" />
 	<meta charset="utf-8">
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -30,7 +31,7 @@ String basePath = request.getScheme() + "://"
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>图片列表</title>
+	<title>客户列表</title>
 </head>
 <body>
 <%@ page isELIgnored="false" %>
@@ -46,7 +47,7 @@ String basePath = request.getScheme() + "://"
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="datadel($('.myCheck').children(':first-child').children(':first-child'))" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a class="btn btn-primary radius" onclick="picture_add('添加图片','client-add-user.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加客户</a>
+		<a class="btn btn-primary radius" onclick="picture_add('添加客户','client-add-user.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加客户</a>
 		</span>
 		<span class="r"></span> </div>
 	<div class="mt-20">
@@ -72,7 +73,7 @@ String basePath = request.getScheme() + "://"
 				<td> ${client.idNumber}</td>
 				<td>${client.assets} 元</td>
 				<td class="td-manage">
-					<a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','client-add-user.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改用户信息','client-modify-user.html',${client.id},'${client.uname}',${client.phone},${client.idNumber},${client.assets} )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 					<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,${client.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 				</td>
 			</tr>
@@ -173,11 +174,27 @@ String basePath = request.getScheme() + "://"
     }
 
     /*图片-编辑*/
-    function picture_edit(title,url,id){
+    function picture_edit(title,url,id,uname,phone,idNumber,assets){
         var index = layer.open({
             type: 2,
             title: title,
-            content: url
+            content: url,
+            success: function(layero, index) {
+                var body = layer.getChildFrame('body', index);//建立父子联系
+                var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
+
+                var id_label = body.find('.modifyID');
+                var unameObj = body.find("#uname");
+                var phoneObj = body.find("#phone");
+                var idNumberObj = body.find("#idNumber");
+                var assetsObj = body.find("#assets");
+                $(unameObj).val(uname);
+                $(phoneObj).val(phone);
+                $(idNumberObj).val(idNumber);
+                $(assetsObj).val(assets);
+                $(id_label).text(id);
+
+            }
         });
         layer.full(index);
     }
@@ -198,7 +215,7 @@ String basePath = request.getScheme() + "://"
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: "/deleteById",
+                url: "Client/deleteById",
                 data:{"id":idString},
                 success: function(data){
                     $(obj).parents("tr").remove();
@@ -233,7 +250,7 @@ String basePath = request.getScheme() + "://"
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: "/deleteById",
+                url: "Client/deleteById",
                 data:{"id":idString},
                 success: function(data){
                     $(obj).parents("tr").remove();

@@ -8,6 +8,7 @@ public interface ClientService {
     List<Client> findAll();
     void insert(Client client);
     void deleteById(int id);
+    void updateById(Client client);
 
 }
 

@@ -78,19 +78,22 @@
         var phone=$("#phone").val();
         var idNumber=$("#idNumber").val();
         var assets=$("#assets").val();
+
         $.ajax({
             type: "POST",   //提交的方法
-            url:"/insert", //提交的地址
+            url:"Client/insert", //提交的地址
             data:{"uname":uname,"phone":phone,"idNumber":idNumber,"assets":assets},
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来
-//                window.location.href="clientList.jsp"
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
+                window.parent.location.reload();
+
             }
         });
         window.parent.location.reload();
+
     }
 
     $(function(){

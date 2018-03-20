@@ -21,4 +21,7 @@ public class ClientServiceImpl implements ClientService {
     public void deleteById(int id){
         clientMapper.deleteById(id);
     }
+    public void updateById(Client client){
+        clientMapper.updateById(client);
+    }
 }

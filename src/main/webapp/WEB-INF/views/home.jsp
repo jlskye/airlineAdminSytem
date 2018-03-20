@@ -83,7 +83,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> <a data-href="../.././welcome.html" data-title="系统主页" href="javascript:void(0)">系统主页</a></dt>
         </dl>
         <dl id="menu-picture">
-            <dt><i class="Hui-iconfont">&#xe613;</i> <a data-href="/clientList" data-title="客户管理" href="javascript:void(0)">客户管理</a></dt>
+            <dt><i class="Hui-iconfont">&#xe613;</i> <a data-href="Client/clientList" data-title="客户管理" href="javascript:void(0)">客户管理</a></dt>
         </dl>
         <dl id="menu-product">
             <dt><i class="Hui-iconfont">&#xe620;</i> 订单管理</dt>
@@ -94,11 +94,11 @@
 
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> 航空公司</dt>
+            <dt><i class="Hui-iconfont">&#xe60d;</i> <a data-href="/carrierList" data-title="航空公司" href="javascript:void(0)">航空公司</a></dt>
 
         </dl>
         <dl id="menu-admin">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 机型管理</dt>
+            <dt><i class="Hui-iconfont">&#xe62d;</i>  <a data-href="Air/airList" data-title="航空公司" href="javascript:void(0)">机型管理</a></dt>
 
         </dl>
         <dl id="menu-tongji">
