@@ -19,40 +19,45 @@
 	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 	<script>DD_belatedPNG.fix('*');</script>
 	<![endif]-->
-	<title>修改机型</title>
+	<title>新增航司</title>
 	<link href="lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form class="form form-horizontal" id="form-article-add" enctype="multipart/form-data">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> &nbsp;&nbsp;机型：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> 公司名称：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="classifications" name="classifications">
+				<input type="text" class="input-text" value="" placeholder="" id="cname" name="cname">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>&nbsp;&nbsp;舱位：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>公司代码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="cabin" name="cabin">
+				<input type="text" class="input-text" value="" placeholder="" id="code" name="code">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>组装设备：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>联系电话：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="assembly" name="assembly">
+				<input type="text" class="input-text" value="" placeholder="" id="landline" name="landline">
 			</div>
 		</div>
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>具体描述：</label>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>上传LOGO：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="description" name="description">
+				<!--<input type="text" class="input-text" value="" placeholder="" id="picpath" name="picpath">-->
+				<!--<input type="file" class="input-file" id="picpath" name="picpath">-->
+				<span class="btn-upload form-group">
+					<input class="input-text upload-url" type="text" name="picpath" id="picpath" readonly style="width:200px">
+					<a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 上传logo</a>
+					<input type="file" multiple name="file-2" class="input-file">
+			</span>
 			</div>
 		</div>
 
-		<div class="row cl ">
+		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-				<label class="modifyAirID" style="opacity: 0"></label>
 				<!--<button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>-->
 				<button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
 				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
@@ -75,20 +80,20 @@
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
     function article_save(){
-        var classifications=$("#classifications").val();
-        var cabin=$("#cabin").val();
-        var assembly=$("#assembly").val();
-        var description=$("#description").val();
-        var id=$(".modifyAirID").text();
+        var cname=$("#cname").val();
+        var code=$("#code").val();
+        var landline=$("#landline").val();
+        var picpath=$("#picpath").val().substr(-6,6);
+
+        console.log("picpath:  "+picpath);
 
         $.ajax({
             type: "POST",   //提交的方法
-            url:"Air/updateById", //提交的地址
-            data:{"id":id,"classifications":classifications,"cabin":cabin,"assembly":assembly,"description":description},
+            url:"Carrier/insert", //提交的地址
+            data:{"cname":cname,"code":code,"landline":landline,"picpath":picpath},
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来
-//               window.location.href="javascript:location.replace(location.href);"
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
                 window.parent.location.reload();
@@ -96,6 +101,7 @@
             }
         });
         window.parent.location.reload();
+
     }
 
     $(function(){

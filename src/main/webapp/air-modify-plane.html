@@ -75,15 +75,12 @@
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
     function article_save(){
-        console.log("进入修改");
         var classifications=$("#classifications").val();
         var cabin=$("#cabin").val();
         var assembly=$("#assembly").val();
         var description=$("#description").val();
         var id=$(".modifyAirID").text();
-        console.log("输入的id为: "+id);
 
-        console.log("输入的classifications为: "+classifications);
         $.ajax({
             type: "POST",   //提交的方法
             url:"Air/updateById", //提交的地址

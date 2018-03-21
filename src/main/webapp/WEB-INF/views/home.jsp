@@ -94,7 +94,7 @@
 
         </dl>
         <dl id="menu-member">
-            <dt><i class="Hui-iconfont">&#xe60d;</i> <a data-href="/carrierList" data-title="航空公司" href="javascript:void(0)">航空公司</a></dt>
+            <dt><i class="Hui-iconfont">&#xe60d;</i> <a data-href="Carrier/carrierList" data-title="航空公司" href="javascript:void(0)">航空公司</a></dt>
 
         </dl>
         <dl id="menu-admin">
