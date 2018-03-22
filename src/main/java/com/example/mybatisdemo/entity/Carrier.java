@@ -1,5 +1,7 @@
 package com.example.mybatisdemo.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 
 
@@ -11,11 +13,18 @@ public class Carrier implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private String picpath ;
+    private MultipartFile uploadfile ;
     private String cname;
     private String code;
     private String landline;
+    private String picpath;
 
+    public MultipartFile getUploadfile() {
+        return uploadfile;
+    }
+    public void setUploadfile(MultipartFile uploadfile) {
+        this.uploadfile = uploadfile;
+    }
     public Integer getId() {
         return id;
     }

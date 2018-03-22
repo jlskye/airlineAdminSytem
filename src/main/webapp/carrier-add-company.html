@@ -49,9 +49,9 @@
 				<!--<input type="text" class="input-text" value="" placeholder="" id="picpath" name="picpath">-->
 				<!--<input type="file" class="input-file" id="picpath" name="picpath">-->
 				<span class="btn-upload form-group">
-					<input class="input-text upload-url" type="text" name="picpath" id="picpath" readonly style="width:200px">
+					<input class="input-text upload-url" type="text" readonly style="width:200px">
 					<a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 上传logo</a>
-					<input type="file" multiple name="file-2" class="input-file">
+					<input type="file" multiple name="uploadfile" id="uploadfile"  class="input-file">
 			</span>
 			</div>
 		</div>
@@ -80,17 +80,28 @@
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
     function article_save(){
-        var cname=$("#cname").val();
-        var code=$("#code").val();
-        var landline=$("#landline").val();
-        var picpath=$("#picpath").val().substr(-6,6);
+//        var cname=$("#cname").val();
+//        var code=$("#code").val();
+//        var landline=$("#landline").val();
+//        var picpath=$("#picpath").val().substr(-6,6);
 
-        console.log("picpath:  "+picpath);
+//        var formdata =new FormData();
+//        formdata.append("cname",$("#cname").val());
+//        formdata.append("code",$("#code").val());
+//        formdata.append("landline",$("#landline").val());
+//        formdata.append("uploadfile",$("#uploadfile")[0].files[0]);
+//
+//        console.log( formdata);
+//
+//        console.log("cname:  "+formdata[uploadfile]);
+//        console.log("picpath:  "+formdata[cname]);
 
         $.ajax({
             type: "POST",   //提交的方法
             url:"Carrier/insert", //提交的地址
-            data:{"cname":cname,"code":code,"landline":landline,"picpath":picpath},
+            processData: false, // 告诉jQuery不要去处理发送的数据
+            contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+            data:new FormData($("#form-article-add")[0]),
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来
@@ -98,6 +109,9 @@
                 parent.layer.close(index);
                 window.parent.location.reload();
 
+            },
+            error:function(){
+                alert("上传失败！");
             }
         });
         window.parent.location.reload();
