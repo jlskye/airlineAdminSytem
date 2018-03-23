@@ -69,8 +69,8 @@ String basePath = request.getScheme() + "://"
 				<td><input name="" type="checkbox" value=""></td>
 				<td>${carrier.id}</td>
 				<td><img src="../../images/${carrier.picpath}" width=80 height=80/> </td>
-				<td>${carrier.cname}</td>
-				<td> ${carrier.code}</td>
+				<td>${carrier.carrierName}</td>
+				<td> ${carrier.carrierId}</td>
 				<td>${carrier.landline} 元</td>
 				<td class="td-manage">
 					<%--<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改公司信息','client-modify-user.html',${carrier.id},'${carrier.pic}',${carrier.cname},${carrier.code},${carrier.landline} )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>--%>
@@ -215,7 +215,7 @@ String basePath = request.getScheme() + "://"
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: "Client/deleteById",
+                url: "Carrier/deleteById",
                 data:{"id":idString},
                 success: function(data){
                     $(obj).parents("tr").remove();

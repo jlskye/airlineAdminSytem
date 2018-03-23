@@ -14,8 +14,8 @@ public class Carrier implements Serializable {
 
     private Integer id;
     private MultipartFile uploadfile ;
-    private String cname;
-    private String code;
+    private String carrier_name;
+    private String carrier_id;
     private String landline;
     private String picpath;
 
@@ -37,17 +37,17 @@ public class Carrier implements Serializable {
     public void setPicpath(String picpath) {
         this.picpath = picpath;
     }
-    public String getCname() {
-        return cname;
+    public String getCarrierName() {
+        return carrier_name;
     }
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setCarrierName(String carrier_name) {
+        this.carrier_name = carrier_name;
     }
-    public String getCode() {
-        return code;
+    public String getCarrierId() {
+        return carrier_id;
     }
-    public void setCode(String code) {
-        this.code = code;
+    public void setCarrierId(String carrier_id) {
+        this.carrier_id = carrier_id;
     }
     public String getLandline() {
         return landline;

@@ -12,10 +12,10 @@ public interface CarrierMapper {
 
     @Select("select * from carrier_info")
     List<Carrier> findAll();
-    @Insert("insert into carrier_info( picpath,cname, code, landline) values(#{picpath},#{cname},#{code},#{landline})")
+    @Insert("insert into carrier_info( picpath,carrier_name,carrier_id, landline) values(#{picpath},#{carrier_name},#{carrier_id},#{landline})")
     void insert(Carrier carrier);
     @Delete("delete from carrier_info where id=#{id}")
     void deleteById(int id);
-    @Update("update carrier_info set picpath=#{picpath},cname=#{cname},code=#{code},landline=#{landline} where id=#{id}")
+    @Update("update carrier_info set picpath=#{picpath},carrier_name=#{carrier_name},carrier_id=#{carrier_id},landline=#{landline} where id=#{id}")
     void updateById(Carrier carrier);
 }
