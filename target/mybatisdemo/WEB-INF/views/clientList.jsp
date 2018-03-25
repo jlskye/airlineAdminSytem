@@ -3,10 +3,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="content-type" content="text/html; charset=UTF-8">
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme() + "://"
-+ request.getServerName() + ":" + request.getServerPort()
-+ path + "/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <!DOCT
 <!DOCTYPE HTML>
@@ -38,16 +38,16 @@ String basePath = request.getScheme() + "://"
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 客户列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<%--<div class="text-c"> 日期范围：--%>
-		<%--<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">--%>
-		<%-----%>
-		<%--<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">--%>
-		<%--<input type="text" name="" id="" placeholder=" 图片名称" style="width:250px" class="input-text">--%>
-		<%--<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>--%>
+	<%--<input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;">--%>
+	<%-----%>
+	<%--<input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;">--%>
+	<%--<input type="text" name="" id="" placeholder=" 图片名称" style="width:250px" class="input-text">--%>
+	<%--<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜图片</button>--%>
 	<%--</div>--%>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="datadel($('.myCheck').children(':first-child').children(':first-child'))" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a class="btn btn-primary radius" onclick="picture_add('添加客户','client-add-user.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加客户</a>
+		<%--<a class="btn btn-primary radius" onclick="picture_add('添加客户','client-add-user.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加客户</a>--%>
 		</span>
 		<span class="r"></span> </div>
 	<div class="mt-20">
@@ -65,18 +65,18 @@ String basePath = request.getScheme() + "://"
 			</thead>
 			<tbody>
 			<c:forEach items="${requestScope.clientList}" var="client">
-			<tr class="text-c myCheck">
-				<td><input name="" type="checkbox" value=""></td>
-				<td>${client.id}</td>
-				<td>${client.uname}</td>
-				<td>${client.phone}</td>
-				<td> ${client.idNumber}</td>
-				<td>${client.assets} 元</td>
-				<td class="td-manage">
-					<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改用户信息','client-modify-user.html',${client.id},'${client.uname}',${client.phone},${client.idNumber},${client.assets} )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-					<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,${client.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-				</td>
-			</tr>
+				<tr class="text-c myCheck">
+					<td><input name="" type="checkbox" value=""></td>
+					<td>${client.id}</td>
+					<td>${client.userName}</td>
+					<td>${client.userPhone}</td>
+					<td> ${client.userId}</td>
+					<td>${client.userMoney} 元</td>
+					<td class="td-manage">
+						<a style="text-decoration:none" class="ml-5" onClick="picture_edit('修改用户信息','client-modify-user.html',${client.id},'${client.userName}',${client.userPhone},${client.userId},${client.userMoney} )" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,${client.id})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+					</td>
+				</tr>
 			</c:forEach>
 			</tbody>
 		</table>
@@ -174,7 +174,7 @@ String basePath = request.getScheme() + "://"
     }
 
     /*图片-编辑*/
-    function picture_edit(title,url,id,uname,phone,idNumber,assets){
+    function picture_edit(title,url,id,userName,userPhone,userId,userMoney){
         var index = layer.open({
             type: 2,
             title: title,
@@ -184,14 +184,14 @@ String basePath = request.getScheme() + "://"
                 var iframeWin = window[layero.find('iframe')[0]['name']];//得到iframe页的窗口对象，执行iframe页的方法：
 
                 var id_label = body.find('.modifyID');
-                var unameObj = body.find("#uname");
-                var phoneObj = body.find("#phone");
-                var idNumberObj = body.find("#idNumber");
-                var assetsObj = body.find("#assets");
-                $(unameObj).val(uname);
-                $(phoneObj).val(phone);
-                $(idNumberObj).val(idNumber);
-                $(assetsObj).val(assets);
+                var unameObj = body.find("#userName");
+                var phoneObj = body.find("#userPhone");
+                var idNumberObj = body.find("#userId");
+                var assetsObj = body.find("#userMoney");
+                $(unameObj).val(userName);
+                $(phoneObj).val(userPhone);
+                $(idNumberObj).val(userId);
+                $(assetsObj).val(userMoney);
                 $(id_label).text(id);
 
             }
@@ -200,19 +200,22 @@ String basePath = request.getScheme() + "://"
     }
 
     /**批量删除**/
-     function datadel(obj){
+    function datadel(obj){
 //        alert($(obj).get());
 //        alert($(obj).is(':checked'));
 //        alert( $("input[type='checkbox']").is(':checked'));
         var idArray = [];
-		$(":checkbox:checked").each(function () {
-			var tablerow = $(this).parents("tr");
+        $(":checkbox:checked").each(function () {
+            var tablerow = $(this).parents("tr");
             var id = tablerow.find("td").eq(1).text();
             idArray.push(id);
-		});
-		var idString=idArray.join(",");
-        alert("idArray"+idString);
+        });
+        var idString=idArray.join(",");
+        // alert("idArray"+idString);
         layer.confirm('确认要删除吗？',function(index){
+            layer.closeAll('dialog');
+
+            window.location.reload();
             $.ajax({
                 type: 'POST',
                 url: "Client/deleteById",
@@ -241,29 +244,32 @@ String basePath = request.getScheme() + "://"
 //		alert($(obj).parent().parent().children(':first-child').children(':first-child').is(':checked'));
 //		alert($(obj).parent().parent().children(':first-child input[type="checkbox"] ').is(':checked'));
 
-		if( $(obj).parent().parent().children(':first-child').children(':first-child').is(':checked')){
-		alert("id: "+id);
-		var idArray = [];
-		idArray.push(id);
+        if( $(obj).parent().parent().children(':first-child').children(':first-child').is(':checked')){
+            // alert("id: "+id);
+            var idArray = [];
+            idArray.push(id);
             var idString=idArray.join(",");
-            alert("idArray"+idString);
-        layer.confirm('确认要删除吗？',function(index){
-            $.ajax({
-                type: 'POST',
-                url: "Client/deleteById",
-                data:{"id":idString},
-                success: function(data){
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-//                    window.location.href="javascript:location.replace(location.href);"
-                    window.location.reload();
+            // alert("idArray"+idString);
+            layer.confirm('确认要删除吗？',function(index){
+                layer.closeAll('dialog');
 
-                },
-                error:function(data) {
-                    console.log(data.msg);
-                },
+                window.location.reload();
+                $.ajax({
+                    type: 'POST',
+                    url: "Client/deleteById",
+                    data:{"id":idString},
+                    success: function(data){
+                        $(obj).parents("tr").remove();
+                        layer.msg('已删除!',{icon:1,time:1000});
+//                    window.location.href="javascript:location.replace(location.href);"
+
+
+                    },
+                    error:function(data) {
+                        console.log(data.msg);
+                    },
+                });
             });
-        });
         }
     }
 </script>

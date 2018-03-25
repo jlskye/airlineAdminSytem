@@ -78,7 +78,7 @@
         var phone=$("#phone").val();
         var idNumber=$("#idNumber").val();
         var assets=$("#assets").val();
-
+        window.parent.location.reload();
         $.ajax({
             type: "POST",   //提交的方法
             url:"Client/insert", //提交的地址

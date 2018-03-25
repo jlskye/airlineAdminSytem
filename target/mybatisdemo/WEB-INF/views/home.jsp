@@ -44,9 +44,9 @@
                 <ul class="cl">
                     <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="article_add('添加资讯','client-add-user.html')"><i class="Hui-iconfont">&#xe616;</i> 航班机票</a></li>
-                            <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i class="Hui-iconfont">&#xe613;</i> 航空公司</a></li>
-                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 飞机机型</a></li>
+                            <li><a href="Flight/add" ><i class="Hui-iconfont">&#xe616;</i> 航班信息</a></li>
+                            <li><a href="javascript:;" onclick="picture_add('添加航空公司','carrier-add-company.html')"><i class="Hui-iconfont">&#xe613;</i> 航空公司</a></li>
+                            <li><a href="javascript:;" onclick="member_add('添加机型','air-add-plane.html','','510')"><i class="Hui-iconfont">&#xe60d;</i> 飞机机型</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -80,17 +80,17 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
         <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> <a data-href="../.././welcome.html" data-title="系统主页" href="javascript:void(0)">系统主页</a></dt>
+            <dt><i class="Hui-iconfont">&#xe616;</i> <a data-href="../welcome.html" data-title="系统主页" href="javascript:void(0)">系统主页</a></dt>
         </dl>
         <dl id="menu-picture">
             <dt><i class="Hui-iconfont">&#xe613;</i> <a data-href="Client/clientList" data-title="客户管理" href="javascript:void(0)">客户管理</a></dt>
         </dl>
         <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 订单管理</dt>
+            <dt><i class="Hui-iconfont">&#xe620;</i> <a data-href="Order/order-info" data-title="订单管理" href="javascript:void(0)">订单管理</a></dt>
 
         </dl>
         <dl id="menu-comments">
-            <dt><i class="Hui-iconfont">&#xe622;</i> 航班信息</dt>
+            <dt><i class="Hui-iconfont">&#xe622;</i> <a data-href="Flight/flight-info" data-title="航班信息" href="javascript:void(0)">航班信息</a></dt>
 
         </dl>
         <dl id="menu-member">
@@ -102,7 +102,7 @@
 
         </dl>
         <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe61a;</i> 系统管理</dt>
+            <dt><i class="Hui-iconfont">&#xe61a;</i> <a data-href="System/system-info" data-title="系统管理" href="javascript:void(0)">系统管理</a></dt>
 
         </dl>
 

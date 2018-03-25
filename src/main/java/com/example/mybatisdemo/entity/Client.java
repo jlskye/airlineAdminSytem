@@ -11,10 +11,10 @@ public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private String uname;
-    private String phone;
-    private String idNumber;
-    private String assets;
+    private String user_name;
+    private String user_phone;
+    private String user_id;
+    private String user_money;
 
     public Integer getId() {
         return id;
@@ -22,29 +22,29 @@ public class Client implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getUname() {
-        return uname;
+    public String getUserName() {
+        return user_name;
     }
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setUserName(String user_name) {
+        this.user_name = user_name;
     }
-    public String getPhone() {
-        return phone;
+    public String getUserPhone() {
+        return user_phone;
     }
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUserPhone(String user_phone) {
+        this.user_phone = user_phone;
     }
-    public String getIdNumber() {
-        return idNumber;
+    public String getUserId() {
+        return user_id;
     }
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
+    public void setUserId(String user_id) {
+        this.user_id = user_id;
     }
-    public String getAssets() {
-        return assets;
+    public String getUserMoney() {
+        return user_money;
     }
-    public void setAssets(String assets) {
-        this.assets = assets;
+    public void setUserMoney(String user_money) {
+        this.user_money = user_money;
     }
 
 

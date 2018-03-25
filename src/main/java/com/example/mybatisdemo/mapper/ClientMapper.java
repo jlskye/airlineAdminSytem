@@ -12,10 +12,10 @@ public interface ClientMapper {
 
     @Select("select * from user_info")
     List<Client> findAll();
-    @Insert("insert into user_info( uname,phone, idNumber, assets) values(#{uname},#{phone},#{idNumber},#{assets})")
+    @Insert("insert into user_info( user_name,user_phone, user_id, user_money) values(#{user_name},#{user_phone},#{user_id},#{user_money})")
     void insert(Client client);
     @Delete("delete from user_info where id=#{id}")
     void deleteById(int id);
-    @Update("update user_info set uname=#{uname},phone=#{phone},idNumber=#{idNumber},assets=#{assets} where id=#{id}")
+    @Update("update user_info set user_name=#{user_name},user_phone=#{user_phone},user_id=#{user_id},user_money=#{user_money} where id=#{id}")
     void updateById(Client client);
 }

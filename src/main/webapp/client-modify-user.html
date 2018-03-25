@@ -28,25 +28,25 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span> 姓&nbsp; &nbsp;名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="uname" name="uname">
+				<input type="text" class="input-text" value="" placeholder="" id="userName" name="userName">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机号：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="phone" name="phone">
+				<input type="text" class="input-text" value="" placeholder="" id="userPhone" name="userPhone">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="idNumber" name="idNumber">
+				<input type="text" class="input-text" value="" placeholder="" id="userId" name="userId">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>余&nbsp; &nbsp;额：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="assets" name="assets">
+				<input type="text" class="input-text" value="" placeholder="" id="userMoney" name="userMoney">
 			</div>
 		</div>
 
@@ -75,18 +75,18 @@
 <script type="text/javascript" src="lib/webuploader/0.1.5/webuploader.min.js"></script>
 <script type="text/javascript">
     function article_save(){
-        var uname=$("#uname").val();
-        var phone=$("#phone").val();
-        var idNumber=$("#idNumber").val();
-        var assets=$("#assets").val();
+        var userName=$("#userName").val();
+        var userPhone=$("#userPhone").val();
+        var userId=$("#userId").val();
+        var userMoney=$("#userMoney").val();
         var id=$(".modifyID").text();
         console.log("输入的id为: "+id);
 
-        console.log("输入的uname为: "+uname);
+        console.log("输入的uname为: "+userName);
         $.ajax({
             type: "POST",   //提交的方法
             url:"Client/updateById", //提交的地址
-            data:{"id":id,"uname":uname,"phone":phone,"idNumber":idNumber,"assets":assets},
+            data:{"id":id,"userName":userName,"userPhone":userPhone,"userId":userId,"userMoney":userMoney},
             success: function(data) {  //成功
                 alert("提交成功！");
                 alert(data);  //就将返回的数据显示出来

@@ -95,7 +95,8 @@
 //
 //        console.log("cname:  "+formdata[uploadfile]);
 //        console.log("picpath:  "+formdata[cname]);
-
+        layer.closeAll('iframe');
+        window.parent.location.reload();
         $.ajax({
             type: "POST",   //提交的方法
             url:"Carrier/insert", //提交的地址
@@ -109,12 +110,10 @@
                 parent.layer.close(index);
                 window.parent.location.reload();
 
-            },
-            error:function(){
-                alert("上传失败！");
             }
         });
         window.parent.location.reload();
+
 
     }
 

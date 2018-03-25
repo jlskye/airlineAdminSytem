@@ -211,8 +211,11 @@ String basePath = request.getScheme() + "://"
             idArray.push(id);
 		});
 		var idString=idArray.join(",");
-        alert("idArray"+idString);
+        // alert("idArray"+idString);
         layer.confirm('确认要删除吗？',function(index){
+            layer.closeAll('dialog');
+
+            window.location.reload();
             $.ajax({
                 type: 'POST',
                 url: "Air/deleteById",
@@ -242,12 +245,15 @@ String basePath = request.getScheme() + "://"
 //		alert($(obj).parent().parent().children(':first-child input[type="checkbox"] ').is(':checked'));
 
 		if( $(obj).parent().parent().children(':first-child').children(':first-child').is(':checked')){
-		alert("id: "+id);
+		// alert("id: "+id);
 		var idArray = [];
 		idArray.push(id);
             var idString=idArray.join(",");
             alert("idArray"+idString);
         layer.confirm('确认要删除吗？',function(index){
+            layer.closeAll('dialog');
+
+            window.location.reload();
             $.ajax({
                 type: 'POST',
                 url: "Air/deleteById",

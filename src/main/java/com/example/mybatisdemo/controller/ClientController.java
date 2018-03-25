@@ -18,7 +18,7 @@ public class ClientController {
     private ClientService clientService;
     @RequestMapping("/updateById")
     public String updateById(Client client){
-        System.out.println(client.getId()+client.getUname()+client.getIdNumber());
+//        System.out.println(client.getId()+client.getUname()+client.getIdNumber());
         clientService.updateById(client);
         return "redirect:/clientList";
     }

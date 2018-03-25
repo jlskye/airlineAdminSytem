@@ -78,7 +78,7 @@
         var cabin=$("#cabin").val();
         var assembly=$("#assembly").val();
         var description=$("#description").val();
-
+        window.parent.location.reload();
         $.ajax({
             type: "POST",   //提交的方法
             url:"Air/insert", //提交的地址
