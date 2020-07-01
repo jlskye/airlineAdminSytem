@@ -6,7 +6,7 @@ pipeline {
 
   }
   stages {
-    stage('uat') {
+    stage('UAT') {
       when {
         expression {
           currentBuild.result == null || currentBuild.result == 'SUCCESS'
@@ -16,7 +16,7 @@ pipeline {
         sh 'echo deploy success ${currentBuild}'
       }
     }
-     stage('deploy') {
+     stage('Production') {
       when {
         expression {
           currentBuild.result == null || currentBuild.result == 'SUCCESS'
